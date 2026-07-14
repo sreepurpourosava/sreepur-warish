@@ -49,13 +49,13 @@
     margin-bottom: 15px;
   }
   .logo-row img {
-    width: 90px;
-    height: 90px;
+    width: 150px;
+    height: 150px;
     object-fit: contain;
   }
   .top-rule {
-    height: 3px;
-    background: linear-gradient(to right, #c0392b 50%, #1a7a3c 50%);
+    height: 4px;
+    background: linear-gradient(to right, #c0392b 33%, #1a7a3c 33%, #1a7a3c 66%, #c0392b 66%);
     border: none;
     margin: 0 0 20px 0;
   }
@@ -93,7 +93,7 @@
     color: #000;
   }
   table.heirs th {
-    background: #f5f5f5;
+    background: #fff;
     font-weight: bold;
   }
   .declaration {
@@ -233,204 +233,6 @@ function searchRecord() {
     const tr = document.createElement('tr');
     const serial = toBengaliDigits(i + 1).padStart(2, '০');
     tr.innerHTML = `<td>${serial}</td><td>${h.name}</td><td>${h.id}</td><td>${h.dob}</td><td>${h.relation}</td><td>--</td>`;
-    tbody.appendChild(tr);
-  });
-
-  notFound.style.display = "none";
-  result.style.display = "block";
-}
-
-window.onload = loadFromUrlParam;
-</script>
-
-</body>
-</html>
-  }
-  .card {
-    max-width: 900px;
-    margin: 0 auto;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    overflow: hidden;
-    padding: 30px 35px 25px 35px;
-  }
-  .logo-row {
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  .logo-row img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-  }
-  .top-rule {
-    border: none;
-    border-top: 3px solid;
-    border-image: linear-gradient(to right, #c0392b, #1a7a3c, #1a56db) 1;
-    margin: 0 0 20px 0;
-  }
-  .cert-meta {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  .cert-title {
-    text-align: center;
-    font-size: 26px;
-    font-weight: bold;
-    margin: 10px 0 25px 0;
-  }
-  .info-list p {
-    margin: 10px 0;
-    font-size: 15px;
-    line-height: 1.7;
-  }
-  table.heirs {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    margin: 25px 0 20px 0;
-  }
-  table.heirs th, table.heirs td {
-    border: 1px solid #ccc;
-    padding: 10px 8px;
-    text-align: center;
-  }
-  table.heirs th {
-    background: #f5f5f5;
-  }
-  .declaration {
-    font-size: 15px;
-    line-height: 1.8;
-    margin: 20px 0;
-  }
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 0 0 0;
-    font-size: 12px;
-    color: #777;
-    border-top: 1px solid #eee;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .footer a { color: #c0392b; text-decoration: none; }
-  .not-found {
-    text-align: center;
-    padding: 40px 15px;
-    color: #b00020;
-    font-size: 15px;
-  }
-  #result { display: none; }
-</style>
-</head>
-<body>
-
-<div class="search-bar">
-  <input type="text" id="searchInput" placeholder="সনদ নম্বর লিখুন (যেমন 001241)">
-  <button onclick="searchRecord()">খুঁজুন</button>
-</div>
-
-<div class="card">
-
-  <div id="result">
-    <div class="logo-row">
-      <img src="logo.png" alt="শ্রীপুর পৌরসভা লোগো">
-    </div>
-    <hr class="top-rule">
-
-    <div class="cert-meta">
-      <span>সনদ নং- <span id="certNo"></span></span>
-      <span>তারিখঃ <span id="certDate"></span></span>
-    </div>
-
-    <div class="cert-title">ওয়ারিশ সনদ পত্র</div>
-
-    <div class="info-list">
-      <p>১. নামঃ<span id="deceasedName"></span></p>
-      <p>২. পিতার নামঃ <span id="fatherName"></span></p>
-      <p>৩. মাতার নামঃ <span id="motherName"></span></p>
-      <p>৪. ঠিকানাঃ <span id="address"></span></p>
-    </div>
-
-    <table class="heirs">
-      <thead>
-        <tr><th>ক্রমিক নং</th><th>নাম</th><th>এন.আই.ডি/জন্ম নিঃ নং</th><th>জন্ম তারিখ</th><th>সম্পর্ক</th><th>মন্তব্য</th></tr>
-      </thead>
-      <tbody id="heirsBody"></tbody>
-    </table>
-
-    <div class="declaration" id="declaration"></div>
-
-    <div class="footer">
-      <span>Copyright © 2022-2026 <a href="#">শ্রীপুর পৌরসভা</a>. All rights reserved.</span>
-      <span>Design &amp; Developed By 2A IT Limited</span>
-    </div>
-  </div>
-
-  <div class="not-found" id="notFound" style="display:none;">
-    কোনো সনদ পাওয়া যায়নি। সনদ নম্বরটি আবার যাচাই করুন।
-  </div>
-
-</div>
-
-<script>
-// আসল রেকর্ড এখানে যোগ করে নিন
-const records = {
-  "001241": {
-    certDate: "২৮-০৬-২০২৬",
-    deceasedName: "মৃত- আলমগীর হোসেন",
-    fatherName: "নুরুল ইসলাম",
-    motherName: "সুফিয়া খাতুন",
-    address: "বাড়ী নং- ১৭০, ব্লক- ডি, ওয়ার্ড নং- ০৮, গ্রামঃ কেওয়া পশ্চিম খন্ড, ডাকঘরঃ মাওনা বাজার, শ্রীপুর পৌরসভা, গাজীপুর।",
-    heirs: [
-      { name: "শামিমা", id: "৩৫২৮৬০৮০৪১৭৭৭", dob: "০৭-০৩-১৯৮৫", relation: "স্ত্রী" },
-      { name: "মাহমুদুল হাসান শাকিল", id: "৭৮০৪৩৯৭২১৯", dob: "২০-০২-১৯৯৮", relation: "পুত্র" },
-      { name: "উপমা", id: "১৯৬৮৫৪৯৭৫০", dob: "২০-১২-২০০৩", relation: "কন্যা" },
-      { name: "সুফিয়া বেগম", id: "৩৫২৮৬০৮০৪৯৮০৬", dob: "২৭-০৮-১৯৫৭", relation: "মা" }
-    ],
-    declaration: "উক্ত ব্যক্তির উপরোল্লিখত ০৪ জন বৈধ ওয়ারিশ ছাড়া আর কোনো ওয়ারিশ নাই। আমি উত্তরাধিকরগণের জীবনের সর্বাঙ্গিন মঙ্গল কামনা করি।"
-  }
-};
-
-function loadFromUrlParam() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
-  if (id) {
-    document.getElementById('searchInput').value = id;
-    searchRecord();
-  }
-}
-
-function searchRecord() {
-  const query = document.getElementById('searchInput').value.trim();
-  const result = document.getElementById('result');
-  const notFound = document.getElementById('notFound');
-
-  const record = records[query];
-  if (!record) {
-    result.style.display = "none";
-    notFound.style.display = "block";
-    return;
-  }
-
-  document.getElementById('certNo').textContent = query;
-  document.getElementById('certDate').textContent = record.certDate;
-  document.getElementById('deceasedName').textContent = record.deceasedName;
-  document.getElementById('fatherName').textContent = record.fatherName;
-  document.getElementById('motherName').textContent = record.motherName;
-  document.getElementById('address').textContent = record.address;
-  document.getElementById('declaration').textContent = record.declaration;
-
-  const tbody = document.getElementById('heirsBody');
-  tbody.innerHTML = "";
-  record.heirs.forEach((h, i) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${i+1}</td><td>${h.name}</td><td>${h.id}</td><td>${h.dob}</td><td>${h.relation}</td><td>--</td>`;
     tbody.appendChild(tr);
   });
 
