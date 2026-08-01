@@ -113,7 +113,8 @@
     flex-wrap: wrap;
     gap: 10px;
   }
-  .footer a { color: #000; text-decoration: none; }
+  .footer .pourashava-link { color: #c0392b; text-decoration: none; }
+  .footer .developer-link { color: #1a56db; text-decoration: none; }
   .not-found {
     text-align: center;
     padding: 40px 15px;
@@ -162,8 +163,8 @@
     <div class="declaration" id="declaration"></div>
 
     <div class="footer">
-      <span>Copyright © 2022-2026 <a href="#">শ্রীপুর পৌরসভা</a>. All rights reserved.</span>
-      <span>Design &amp; Developed By <a href="https://2aitltd.com" target="_blank">2A IT Limited</a></span>
+      <span>Copyright © 2022-2026 <a class="pourashava-link" href="#">শ্রীপুর পৌরসভা</a>. All rights reserved.</span>
+      <span>Design &amp; Developed By <a class="developer-link" href="https://2aitltd.com" target="_blank">2A IT Limited</a></span>
     </div>
   </div>
 
@@ -232,7 +233,7 @@ function searchRecord() {
   record.heirs.forEach((h, i) => {
     const tr = document.createElement('tr');
     const serial = toBengaliDigits(i + 1).padStart(2, '০');
-    tr.innerHTML = `<td>${serial}</td><td>${h.name}</td><td>${h.id}</td><td>${h.dob}</td><td>${h.relation}</td><td>--</td>`;
+    tr.innerHTML = <td>${serial}</td><td>${h.name}</td><td>${h.id}</td><td>${h.dob}</td><td>${h.relation}</td><td>--</td>;
     tbody.appendChild(tr);
   });
 
