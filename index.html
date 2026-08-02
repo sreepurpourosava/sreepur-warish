@@ -93,7 +93,7 @@
     color: #000;
   }
   table.heirs th {
-    background: #f9f9f9;
+    background: #fff;
     font-weight: bold;
   }
   .declaration {
@@ -118,9 +118,8 @@
   .not-found {
     text-align: center;
     padding: 40px 15px;
-    color: #d9534f;
-    font-size: 16px;
-    font-weight: bold;
+    color: #000;
+    font-size: 15px;
   }
   #result { display: none; }
 </style>
@@ -148,7 +147,7 @@
     <div class="cert-title">ওয়ারিশ সনদ পত্র</div>
 
     <div class="info-list">
-      <p>১. নামঃ <span id="deceasedName"></span></p>
+      <p>১. নামঃ<span id="deceasedName"></span></p>
       <p>২. পিতার নামঃ <span id="fatherName"></span></p>
       <p>৩. মাতার নামঃ <span id="motherName"></span></p>
       <p>৪. ঠিকানাঃ <span id="address"></span></p>
@@ -156,12 +155,7 @@
 
     <table class="heirs">
       <thead>
-        <tr>
-          <th>ক্রমিক নং</th>
-          <th>ওয়ারিশের নাম</th>
-          <th>সম্পর্ক</th>
-          <th>মন্তব্য</th>
-        </tr>
+        <tr><th>ক্রমিক নং</th><th>নাম</th><th>এন.আই.ডি/জন্ম নিঃ নং</th><th>জন্ম তারিখ</th><th>সম্পর্ক</th><th>মন্তব্য</th></tr>
       </thead>
       <tbody id="heirsBody"></tbody>
     </table>
@@ -186,16 +180,16 @@ const records = {
     certNo: "০০১২৪১",
     certDate: "১৭-১০-২০২৫",
     deceasedName: "মৃত- কিছমত আলী",
-    fatherName: "মৃত শুকুর মাহমুদ",
+    fatherName: " শুকুর মাহমুদ",
     motherName: "আকিমন নেছা",
     address: "বাড়ী নং- ১৩৮, ব্লক- বি, ওয়ার্ড নং- ০৮, গ্রামঃ কেওয়া পশ্চিম খন্ড, ডাকঘরঃ মাওনা বাজার, শ্রীপুর পৌরসভা, গাজীপুর।",
     heirs: [
-      { name: "আমেনা খাতুন", relation: "স্ত্রী" },
-      { name: "মোঃ হাবিবুর রহমান", relation: "পুত্র" },
-      { name: "মোঃ ফারুক", relation: "পুত্র" },
-      { name: "মোছাঃ সালেহা", relation: "কন্যা" }
+      { name: "আমেনা খাতুন", id: "০০০০০০০০০০০০০১৯৫৪", dob: "০৭-০৩-১৯৩০", relation: "স্ত্রী" },
+      { name: "হাবিবুর রহমান", id: "৩২৮২৭৭২২৭০", dob: "২৯-০৩-১৯৫৪", relation: "পুত্র" },
+      { name: " মোঃ ওমর ফারুক", id: "৪৬৩২৮৭৮৪৪৫", dob: "০১-০১-১৯৭০", relation: "পুত্র" },
+      { name: "মোছাঃ ছালেহা আক্তার", id: "৫৯৮২৭৯৯০৬৫", dob: "২৭-০৮-১৯৫৭", relation: "কন্যা" }
     ],
-    declaration: "উক্ত ব্যক্তির উপরোল্লিখত ০৪ জন বৈধ ওয়ারিশ ছাড়া আর কোনো ওয়ারিশ নাই। আমি উত্তরাধিকারগণের জীবনের সর্বাঙ্গীন মঙ্গল কামনা করি।"
+    declaration: "উক্ত ব্যক্তির উপরোল্লিখত ০৪ জন বৈধ ওয়ারিশ ছাড়া আর কোনো ওয়ারিশ নাই। আমি উত্তরাধিকরগণের জীবনের সর্বাঙ্গিন মঙ্গল কামনা করি।"
   }
 };
 
@@ -235,18 +229,10 @@ function searchRecord() {
 
   const tbody = document.getElementById('heirsBody');
   tbody.innerHTML = "";
-  
   record.heirs.forEach((h, i) => {
     const tr = document.createElement('tr');
     const serial = toBengaliDigits(i + 1).padStart(2, '০');
-    
-    // টেমপ্লেট স্ট্রিং (Backticks) ঠিক করা হয়েছে
-    tr.innerHTML = `
-      <td>${serial}</td>
-      <td>${h.name}</td>
-      <td>${h.relation}</td>
-      <td>--</td>
-    `;
+    tr.innerHTML = <td>${serial}</td><td>${h.name}</td><td>${h.id}</td><td>${h.dob}</td><td>${h.relation}</td><td>--</td>;
     tbody.appendChild(tr);
   });
 
