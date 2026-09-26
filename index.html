@@ -53,11 +53,17 @@
     height: 150px;
     object-fit: contain;
   }
-  .top-rule {
-    height: 4px;
-    background: linear-gradient(to right, #c0392b 33%, #1a56db 33%, #1a56db 66%, #c0392b 66%);
+  .rule-red {
+    height: 3px;
+    background: #c0392b;
+    margin: 0;
     border: none;
+  }
+  .rule-green {
+    height: 3px;
+    background: #1a7a3c;
     margin: 0 0 20px 0;
+    border: none;
   }
   .cert-meta {
     display: flex;
@@ -137,7 +143,8 @@
     <div class="logo-row">
       <img src="logo.png" alt="শ্রীপুর পৌরসভা লোগো">
     </div>
-    <hr class="top-rule">
+    <div class="rule-red"></div>
+    <div class="rule-green"></div>
 
     <div class="cert-meta">
       <span>সনদ নং- <span id="certNo"></span></span>
